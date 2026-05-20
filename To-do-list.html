@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="To-do-list.css">
+    <script>
+        function addTask(){
+            let input = document.getElementById("taskInput");
+            let taskText = input.value;
+
+            console.log(taskText);
+
+            if(taskText == ""){
+                alert('input a text');
+            }else{
+                let li = document.createElement("li");
+                li.textContent = taskText;
+
+                li.addEventListener("click",function(){
+                    li.classList.toggle("completed");
+                })
+
+                document.getElementById("taskList").appendChild(li);
+                input.value = "";
+
+                li.addEventListener("dblclick",function(){
+                    document.getElementById("taskList").remove(li);
+                })
+                
+            }
+
+        }
+
+    </script>
+</head>
+<body> 
+    <div class="parent">
+        <div class="inputArea">
+             <h1>My Todo List</h1>
+            <input type="text" id="taskInput" placeholder="Add a new task..." required>
+            <button id="name" onclick="addTask()"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <hr>
+            <ul id="taskList">
+            </ul>
+            <p id="counter"> 0 task remaining</p>
+            <button id="clear">Clear completed</button>
+    </div> 
+</body>
+</html>
